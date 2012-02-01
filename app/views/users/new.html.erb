@@ -1,0 +1,26 @@
+<div class="signin_paper_wrapper">
+  <div class="signin_paper"> 
+    <div class="signin_paper_header">   
+      <h2>Sign up for ToDoGroove</h2>
+    </div>
+    <div id="content">
+      <div id="form_container">
+        <p class="blurb">ToDoGroove is currently in private beta, and we're not doing any of that "invite 3 friends" stuff. To request an invitation, email us at <a href="mailto:todogroove@gmail.com">todogroove@gmail.com</a>.
+        </p>
+
+        <p class="blurb">
+          <strong>Want to skip the line?</strong> You can sign up for a 2-week trial via PayPal and we'll create your account right away. If it doesn't change the way you work, you can cancel at no charge.
+        </p>
+        <div class="paypal-form">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="GAFYSYJB9EL24">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+          </form>
+        </div>
+      </div>
+      <%= link_to "Already have an account? Sign in", new_session_path %>
+    </div>
+  </div>
+</div>

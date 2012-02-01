@@ -1,0 +1,57 @@
+html, body {height: 100%;}
+
+body {
+  color: #111;
+  font-family: helvetica, arial, sans-serif;
+  @include background(image-url("corkboard.jpg"));
+}
+#container {
+  min-height: 100%;
+}
+
+ul {
+  -webkit-padding-start: 0px !important;
+}
+
+#main {
+ 	padding-bottom: 20px;
+}  /* must be same height as the footer */
+
+#page_title {
+  font-family: 'Nothing You Could Do', cursive;
+  @include rotate(-2deg);
+  font-weight: bold;
+  @include background(image-url("torn_paper.png"));
+  float: left;
+  width: 400px;
+  height: 100px;
+  margin-top: 10px;
+  h1 {
+    font-size: 32px;
+    margin: 10px;
+    margin-top: 13px;
+    margin-left: 25px;
+    line-height: 85%;
+  }
+}
+
+.pom_counter_container {
+  font-family: 'Nothing You Could Do', cursive;
+  margin: 10px;
+  @include rotate(4deg);
+  float: right;
+  @include background(image-url("post_it.png"));
+  @include border-radius;
+  width: 225px;
+  height: 100px;
+  .poms_complete {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 5px;
+    margin-left: 15px;
+  }
+  .poms_planned {
+    margin: 5px;
+    margin-left: 15px;
+  }
+}

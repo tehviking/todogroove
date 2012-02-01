@@ -1,0 +1,196 @@
+@mixin icon {
+  display: block; 
+  width: 32px; 
+  height: 32px; 
+  text-decoration: none; 
+  text-indent: -9999px;
+}
+
+@mixin icon_small {
+  display: block; 
+  float: left;
+  margin: 3px;
+  width: 20px; 
+  height: 20px; 
+  text-decoration: none; 
+  text-indent: -9999px;
+}
+
+.done .task_name {
+  text-decoration: line-through;
+}
+
+.pom_container {
+  @include border-radius(4px);
+  max-width: 450px;
+  margin-left: -4px;
+  clear: both;
+  float: left;
+}
+.completed_pom {
+  @include icon; 
+  float: left;
+  margin-left: 3px;
+  margin-right: 3px;
+  background: transparent url('/images/tomato_complete.png');
+  &:hover {
+    background: transparent url('/images/tomato_gray.png');
+  }
+}
+.uncompleted_pom {
+  @include icon;
+  float: left;
+  margin-left: 3px;
+  margin-right: 3px;
+  background: transparent url('/images/tomato.png');
+  &:hover {
+    background: transparent url('/images/tomato_complete_gray.png');
+  }
+}
+.add_pom {
+  @include icon; 
+  margin-left: 3px;
+  margin-right: 3px;
+  float: left;
+  background: transparent url('/images/tomato_add_gray.png');
+  &:hover {
+    background: transparent url('/images/tomato_add.png');
+  }
+}
+.edit_icon {
+  @include icon_small;
+  background: transparent url('/images/icon_edit.png');  
+}
+.details_icon {
+  @include icon_small;
+  background: transparent url('/images/icon_info.png');  
+}
+.delete_icon {
+  @include icon_small;
+  background: transparent url('/images/icon_delete.png');  
+}
+.archive_icon {
+  @include icon_small;
+  background: transparent url('/images/icon_box_down.png');  
+}
+.unarchive_icon {
+  @include icon_small;
+  background: transparent url('/images/icon_box_up.png');  
+}
+.task_tags {
+  clear: both;
+  float: left;
+  font-size: 70%;
+  margin-top: 5px;
+}
+.task_button_container {
+  float: right;
+  font-family: helvetica, arial, sans-serif;
+  margin-right: -3px;
+  margin-top: -20px;
+}
+
+li.task_container {
+  list-style-type: none;
+  @include background(rgba(255,255,255,0.3));
+  margin: 5px;
+  margin-left: -25px;
+  margin-right: 14px;
+  padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border: 1px solid #ddd;
+  @include border-radius;
+  .task {
+    margin: 5px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    text-align: left;
+    .task_name {
+    }
+    .task_controls {
+      float: right;
+      margin-right: -8px;
+      margin-top: 0px;
+    }
+  }
+}
+
+ul#task_list {
+  font-size: 16px;
+  margin-top: -20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  @include border-bottom-radius(9px);
+  form {
+    text-align: left;
+    margin: 10px;
+    font-size: 20px;
+    input {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+  }
+  .task {
+    margin: 10px;
+    text-align: left;
+    .task_name {
+    }
+    .edit_destroy {
+      float: right;
+    }
+  }
+}
+
+div#task_list {
+  font-size: 16px;
+  margin-top: -10px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  @include border-bottom-radius(9px);
+  form {
+    text-align: left;
+    margin: 10px;
+    font-size: 20px;
+    input {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+  }
+  .task {
+    margin: 10px;
+    text-align: left;
+    .task_name {
+    }
+    .edit_destroy {
+      float: right;
+    }
+  }
+}
+
+div.task_container {
+  list-style-type: none;
+  @include background(rgba(255,255,255,0.3));
+  margin: 5px;
+  margin-right: 14px;
+  padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border: 1px solid #ddd;
+  @include border-radius;
+  .task {
+    margin: 5px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    text-align: left;
+    .task_name {
+    }
+    .task_controls {
+      float: right;
+      margin-right: -8px;
+      margin-top: 0px;
+    }
+  }
+}

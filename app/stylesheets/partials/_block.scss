@@ -1,0 +1,64 @@
+$nearly_black: #002134;
+
+.block_wrapper {
+  padding-top: 30px;
+  clear: both;
+  text-align: center;
+}
+
+.block {
+  width: 640px;
+  position: relative;
+  left:50%;
+//  top:50%;
+  margin: 0 0 0 -320px;
+  @include border-radius(9px);
+  @include box-shadow;
+  border: 1px solid #444;
+  h2 {    
+    @include border-top-radius(9px);
+    @include background-image(linear-gradient(#333, #444 48%, #222 53%, $nearly_black)); 
+    padding: 10px;
+    margin-top: 0px;
+    color: #fff;
+  }
+  #content {
+    background: #f1f1f1;
+    @include background-image(linear-gradient(#fff, #f1f1f1 20%, #ddd 53%, #ddd)); 
+    font-size: 16px;
+    margin-top: -20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    @include border-bottom-radius(9px);
+    form {
+      text-align: left;
+      margin: 10px;
+      font-size: 20px;
+      input {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+    }
+    .task {
+      margin: 10px;
+      text-align: left;
+      .task_name {
+      }
+      .edit_destroy {
+        float: right;
+      }
+    }
+  }
+  .left_justified {
+    margin: 10px;
+    text-align: left;
+  }
+}
+.button_container {
+  font-family: sans-serif;
+  font-weight: bold;
+  float: right;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

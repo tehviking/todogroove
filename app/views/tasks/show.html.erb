@@ -1,0 +1,109 @@
+<p id="notice"><%= notice %></p>
+
+<div style="clear:both;"></div>
+<div id="page_title">
+  <h1>Focus mode: <%= @task.name %></h1>
+</div>
+
+<div class="timer_container">
+  <div id="timer"></div>
+  <div class= "timer_options">
+    <div class="buttons_row">
+      <button type="button" id="timer_start" class="timer_button">Start pom</button>
+      <button type="button" id="timer_cancel" class="timer_cancel">Cancel pom</button>
+    </div>
+  </div>
+</div>
+
+<div class="pom_counter_container">
+  <div class="poms_complete">Pomodoros complete: <%= @task.completed_pomodoros %></div> 
+  <div class="poms_planned">Pomodoros planned: <%= @task.estimated_pomodoros %></div>
+</div>
+
+<div class="paper_wrapper">
+  <div class="paper"> 
+    <div class="paper_header">   
+      <h2><%= @task.name %></h2>
+    </div>
+    <div id="content">
+      <div id="task_list">
+        <div class="task_container">
+          <div class="task <%= @task.done? ? 'done' : 'not_done' %>">  
+            <span class="task_name">
+              <%= @task.name %> 
+            </span>
+            <div class="task_controls">
+              <%= link_to "Edit", edit_task_path(@task), :class => "edit_icon" %>
+              <%= link_to "Archive", archive_task_path(@task), :class => "archive_icon" %>
+              <%= link_to "Delete", @task, :confirm => "Are you sure?", :method => :delete, :class => "delete_icon" %>
+            </div>
+            
+            <div class="pom_container">
+              <% if @task.estimated_pomodoros > 0 || task.completed_pomodoros %>
+                <% @task.completed_pomodoros.times do %>
+                  <%= link_to "Uncomplete pom", untick_pom_task_path(@task), :class => "completed_pom" %>
+                <% end %>
+                <% if @task.estimated_pomodoros > @task.completed_pomodoros %>
+                  <% (@task.estimated_pomodoros - @task.completed_pomodoros).times do %>
+                    <%= link_to "Complete pom", tick_pom_task_path(@task), :class => "uncompleted_pom" %>
+                  <% end %>
+                <% end %>
+                <%= link_to "Add pom estimate", add_estimated_pom_task_path(@task), :class => "add_pom" %>
+              <% end %>
+            </div>
+            
+            <div class="task_tags">
+              <%= @task.tags.map(&:name) * ', ' %>
+            </div>
+            
+            <div class="task_button_container">
+              <% if @task.done? %>
+                <%= link_to '☓ Undo', uncomplete_task_path(@task), :class => 'light_button' %>
+              <% else %>
+                <%= link_to '✓ Done', complete_task_path(@task), :class => 'light_button' %>
+              <% end %>
+            </div>
+            <div style="clear:both;"></div>
+          </div>
+        </div>
+      </div>  
+    </div>
+    <div style="clear:both;"></div>
+    <div class="button_container">
+      <%= link_to 'All Tasks', tasks_path, :class => 'shiny_button' %>
+    </div>  
+  </div>
+</div>
+
+<script type="text/javascript">
+  var pomEnds = null;
+  var currentTask = null;
+
+  $('#timer').countdown({until: pomEnds,  
+      onExpiry: tickPom, format: "MS"}); 
+   
+  $('#timer_start').click(function() { 
+      pomEnds = new Date(); 
+      pomEnds.setMinutes(pomEnds.getMinutes() + 25); 
+      $('#timer').countdown('change', {until: pomEnds}); 
+      currentTask = "<%= @task.id %>";
+      console.log(currentTask);
+  }); 
+
+  $('#timer_cancel').click(function() {
+    $('#timer').countdown('destroy');
+    pomEnds = null;
+    $('#timer').countdown({until: pomEnds,  
+      onExpiry: tickPom, format: "MS"});
+  });
+   
+  function tickPom() { 
+      $.ajax({
+        type: "GET",
+        url: "/tasks/" +currentTask+ "/tick_pom"
+      }).done(function(){
+        location.reload();
+      });
+      alert('Pomodoro complete!'); 
+  } 
+</script>

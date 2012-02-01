@@ -1,0 +1,39 @@
+<div id="form_container">
+  <%= form_for(@task) do |f| %>
+    <% if @task.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+        <ul>
+        <% @task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, :autofocus => "true" %>
+    </div>
+    <div class="field">
+      <%= f.label :estimated_pomodoros, 'Estimated Pomodoros' %><br />
+      <%= f.text_field :estimated_pomodoros %>
+    </div>
+    <div class="field">
+      <%= f.label :completed_pomodoros, 'Completed Pomodoros' %><br />
+      <%= f.text_field :completed_pomodoros %>
+    </div>
+    <div class="field">
+      <%= f.label :done %><br />
+      <%= f.check_box :done %>
+    </div>
+    <div class="field">
+      <%= f.label :tags %> <i>(Separate with commas)</i><br />
+      <%= f.text_field :tags, :value => @task.tags.map(&:name).join(', ') %>
+    </div>
+   <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

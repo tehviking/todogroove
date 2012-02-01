@@ -1,0 +1,84 @@
+.paper_breathing_room {
+  height: 25px;
+  width: 100%;
+}
+.paper:before, .paper:after
+{
+	position: absolute;
+	width: 40%;
+	height: 10px;
+	content: ' ';
+	left: 12px;
+	bottom: 12px;
+	background: transparent;
+	-webkit-transform: skew(-5deg) rotate(-5deg);
+	-moz-transform: skew(-5deg) rotate(-5deg);
+	-ms-transform: skew(-5deg) rotate(-5deg);
+	-o-transform: skew(-5deg) rotate(-5deg);
+	transform: skew(-5deg) rotate(-5deg);
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+	-moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+	z-index: -1;
+}
+.paper:after
+{
+	left: auto;
+	right: 12px;
+	-webkit-transform: skew(5deg) rotate(5deg);
+	-moz-transform: skew(5deg) rotate(5deg);
+	-ms-transform: skew(5deg) rotate(5deg);
+	-o-transform: skew(5deg) rotate(5deg);
+	transform: skew(5deg) rotate(5deg);
+}
+
+.paper_wrapper {
+  padding-top: 0px;
+  clear: both;
+  text-align: center;
+}
+
+.paper {
+  font-family: 'Nothing You Could Do', cursive;
+  width: 640px;
+  position: relative;
+  left:50%;
+//  top:50%;
+  margin: 0 0 0 -320px;
+  @include box-shadow(rgba(0,0,0,0.8) 0px 0px 5px);
+  @include background(image-url("old_mathematics.png"));
+  .paper_header {
+    @include background(rgba(0,0,0,0.05));
+    h2 {    
+      padding: 5px;
+      margin-top: 0px;
+    }
+    .select_box_container {
+      padding: 5px;
+      margin-top: -58px;
+      float: right;
+      text-align: left;
+      font-family: sans-serif;
+    }
+  }
+  #content {
+    font-size: 18px;
+    margin-top: -20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    form {
+      text-align: left;
+      margin: 10px;
+      font-size: 20px;
+      input {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+    }
+  }
+  .left_justified {
+    margin: 10px;
+    text-align: left;
+  }
+}

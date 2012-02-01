@@ -1,0 +1,29 @@
+<div class="paper_breathing_room"></div>
+<div class="paper_wrapper">
+  <div class="paper"> 
+    <div class="paper_header">   
+      <h2>Archived tasks</h2>
+    </div>
+    <div id="content">
+      <% @archived_tasks.each do |task| %>
+      <div class="task_container">
+        <div class="task <%= task.done? ? 'done' : 'not_done' %>">  
+          <span class="task_name">
+            <%= task.name %> 
+          </span>
+          <div class="task_controls">
+            <%= link_to "Unarchive", unarchive_task_path(task), :class => "unarchive_icon" %>
+            <%= link_to "Delete", task, :confirm => "Are you sure?", :method => :delete, :class => "delete_icon" %>
+          </div>
+          <div class="task_tags">
+            <%= task.tags.map(&:name) * ', ' %>
+          </div>
+          <div style="clear:both;"></div>
+          
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<br />

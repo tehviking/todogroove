@@ -1,0 +1,16 @@
+<div class="paper_breathing_room"></div>
+
+<div class="paper_wrapper">
+  <div class="paper"> 
+    <div class="paper_header">   
+      <h2>Edit task</h2>
+    </div>
+    <div id="content">
+      <%= render 'form' %>
+      <div class="button_container">
+        <%= link_to 'View Task', @task, :class => 'shiny_button' %> 
+        <%= link_to 'Back', tasks_path, :class => 'shiny_button' %>
+      </div>
+    </div>
+  </div>
+</div>

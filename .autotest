@@ -1,0 +1,23 @@
+require 'autotest/fsevent'
+require 'autotest/growl'
+
+Autotest.add_hook :initialize do |autotest|
+  %w{.git .DS_Store ._* tmp vendor}.each { |exception| autotest.add_exception(exception) }
+  autotest.add_mapping(%r{^lib/.*\.rb$}) {|f, _|
+    Dir['spec/**/*_spec.rb']
+  }
+  
+  autotest.add_mapping(%r%^spec/acceptance/.*_spec.rb$%, true) { |filename, _|
+    filename
+  }
+
+  autotest.add_mapping(%r%^app/(models|controllers|helpers|lib)/.*rb$%, true) {
+    autotest.files_matching %r%^spec/acceptance/.*_spec.rb$%
+  }
+
+  autotest.add_mapping(%r%^app/views/(.*)$%, true) {
+    autotest.files_matching %r%^spec/acceptance/.*_spec.rb$%
+  }
+  
+  false
+end

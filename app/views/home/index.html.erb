@@ -1,0 +1,78 @@
+<div style="clear:both;"></div>
+<div id="home_content">
+  <div id="hero">
+    <div class="hero_copy_container">
+      <div class="hero_copy">
+        <h1>
+          Accomplish something today.
+        </h1>
+        <hr />
+        
+        <p>Free yourself from interruptions.</p>
+        <p>Do more work in less time.</p>
+        <p>Find your focus.</p>
+        <p><b>Do what matters. Skip the rest.</b></p>
+        <div id="signup_button_container">
+          <%= link_to "Join the Beta", new_user_path, :class => "shiny_button"%>
+        </div> 
+      </div>
+    </div>
+  </div>
+  <div id="box_container">
+    <div class="wide_box">
+      <%= image_tag("pom_timer.png", :class => "inset_image") %>
+      <div class="pomodoro_copy">
+        <h3 class="pom_headline">
+          What's with the tomato?
+        </h3>        
+        <p class="pom_copy">ToDoGroove uses the Pomodoro Technique, a powerful tool for keeping your focus on the things that really matter.</p>
+        <div id="learn_more_link">
+          <%= link_to "Learn more about the Pomodoro Technique", "http://www.pomodorotechnique.com", :class => "pom_link" %>
+        </div> 
+      </div>
+      
+    </div>
+    <div class="box_left">
+      <div class="box_content">
+        <div class="box_headline">
+          <h3>Know what's next.</h3>
+        </div>
+        <%= image_tag("home_list.png", :class => "box_image") %>
+        <p class="box_copy">
+          You know that sense that you have important things to do, but no idea
+          what you should do <em>right now</em>?
+          <br /><br /> 
+          ToDoGroove lets you focus on exactly what you should be doing next, at a glance.
+        </p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box_content">
+        <div class="box_headline">
+          <h3>Lies, damn lies, and task lists.</h3>
+        </div>
+        <%= image_tag("trashcan_full.png", :class => "box_image") %>
+        <p class="box_copy">
+          Many task management tools cause us to lie by marking abandoned
+          tasks as complete. 
+          <br /><br />
+          ToDoGroove helps you easily drop less important tasks and focus on what matters.
+        </p> 
+      </div>
+    </div>
+    <div class="box_right">
+      <div class="box_content">
+        <div class="box_headline">
+          <h3>Work, uninterrupted.</h3>
+        </div>
+        <%= image_tag("home_clock.png", :class => "box_image") %>
+        <p class="box_copy">
+          The heart of ToDoGroove is the idea of carving out 25-minute, uninterrupted stretches
+          of work, called "Pomodoros".
+          <br /><br />
+          Once you try it, we promise it'll change the way you get work done.
+        </p> 
+      </div>
+    </div>
+  </div>
+</div>

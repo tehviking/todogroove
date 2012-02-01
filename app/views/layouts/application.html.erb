@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
+  <%= stylesheet_link_tag 'print.css', :media => 'print' %>
+  <%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Aldrich|Nothing+You+Could+Do', :media => 'screen, projection' %>
+  <!--[if lt IE 8]><%= stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection' %><![endif]-->
+  <title>ToDoGroove</title>
+  <%= javascript_include_tag :todogroove %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="container">
+    <div id="main">
+      <div id="header">
+        <div id="logo">
+          <%= link_to "ToDoGroo✓e", "/" %>
+        </div>
+        <div id="login_logout">
+          <% if current_user %>
+           	Welcome, <strong><%= current_user.name %>!</strong>
+       	        :
+           	<%= link_to "My Tasks", tasks_path %>
+       				  :  
+           	<%= link_to "Archive", archived_tasks_path %>
+       				  :  
+       			<%= link_to "Log Out", logout_path %>
+       		<% else %>
+       			<em>Not signed in.</em>
+       			<%= link_to "Log In", login_path %>
+       		    or
+       		  <%= link_to "Sign Up", new_user_path %>
+       		<% end %>
+        </div>
+      </div>
+      <div id="page_content">
+        <% if !flash.empty? %>
+          <div id="flash">
+            <% flash.each do |name, msg| %>
+              <span id="<%= "flash#{name}" %>"><%= msg %></span>
+            <% end %>
+          </div>
+        <% end %>
+    
+       <%= yield %>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <p id="footer_info">&copy; 2011 ToDoGroove</p>
+</div>
+
+</body>
+</html>

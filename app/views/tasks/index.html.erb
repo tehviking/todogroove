@@ -1,0 +1,130 @@
+<div style="clear:both;"></div>
+<div id="page_title">
+  <h1>Today: <%= @list_title %> tasks</h1>
+</div>
+
+<div class="timer_container">
+  <div id="timer"></div>
+  <div class= "timer_options">
+    <div class="drop_down_row">
+      <%= select_tag "Activity", options_from_collection_for_select((@tasks || @all_tasks), 'id', 'name'), :class => "timer_drop_down chzn-select" %>
+    </div>
+    <div class="buttons_row">
+      <button type="button" id="timer_start" class="timer_button">Start pom</button>
+      <button type="button" id="timer_cancel" class="timer_cancel">Cancel pom</button>
+    </div>
+  </div>
+</div>
+
+<div class="pom_counter_container">
+  <div class="poms_complete">Pomodoros complete: <%= @completed_pomodoros %></div> 
+  <div class="poms_planned">Pomodoros planned: <%= @estimated_pomodoros %></div>
+</div>
+
+<div class="paper_wrapper">
+  <div class="paper"> 
+    <div class="paper_header">   
+      <h2><%= @list_title %> tasks</h2>
+      <div class="select_box_container">
+      
+      <%= select("tag", "name", [["All Tasks (#{@all_tasks.count})", 'All Tasks']] + @tags.map { |tag| ["#{tag.name} (#{@tag_counts[tag.name]})", tag.name] }, {},
+      :style => "width:160px;",
+      :class => "chzn-select",
+      :onchange => "if (this.value=='All Tasks') { document.location='/tasks' } else { document.location='/tasks/tag/' + this.value }",
+      :onchangeworky => "document.location='/tasks/tag/' + this.value"
+      )
+%>
+      </div>
+    </div>
+    <ul id="task_list" data-update-url="<%= sort_tasks_url %>">
+      <% @tasks.each do |task| %>
+      <%= content_tag_for :li, task, :class => "task_container" do %>
+        <div class="task <%= task.done? ? 'done' : 'not_done' %>">  
+            <span class="task_name">
+              <%= task.name %> 
+            </span>
+            <div class="task_controls">
+              <%= link_to "Edit", edit_task_path(task), :class => "edit_icon" %>
+              <%= link_to "Details", task, :class => "details_icon" %>
+              <%= link_to "Archive", archive_task_path(task), :class => "archive_icon" %>
+              <%= link_to "Delete", task, :confirm => "Are you sure?", :method => :delete, :class => "delete_icon" %>
+            </div>
+            
+            <div class="pom_container">
+              <% if task.estimated_pomodoros > 0 || task.completed_pomodoros %>
+                <% task.completed_pomodoros.times do %>
+                  <%= link_to "Uncomplete pom", untick_pom_task_path(task), :class => "completed_pom" %>
+                <% end %>
+                <% if task.estimated_pomodoros > task.completed_pomodoros %>
+                  <% (task.estimated_pomodoros - task.completed_pomodoros).times do %>
+                    <%= link_to "Complete pom", tick_pom_task_path(task), :class => "uncompleted_pom" %>
+                  <% end %>
+                <% end %>
+                <%= link_to "Add pom estimate", add_estimated_pom_task_path(task), :class => "add_pom" %>
+              <% end %>
+            </div>
+            
+            <div class="task_tags">
+              <%= task.tags.map(&:name) * ', ' %>
+            </div>
+            <div class="task_button_container">
+              <% if task.done? %>
+                <%= link_to '☓ Undo', uncomplete_task_path(task), :class => 'task_button' %>
+              <% else %>
+                <%= link_to '✓ Done', complete_task_path(task), :class => 'task_button' %>
+              <% end %>
+            </div>
+            <div style="clear:both;"></div>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="quick_add">
+        <%= form_for(@task) do |f| %>
+       <%= f.text_field :name, :placeholder => "Task name" %>
+        <%= f.hidden_field :done, :value => 0 %>
+        <% unless @list_title == 'All' %>
+        <%= hidden_field_tag :redirect_to, @list_title %>
+        <%= f.hidden_field :tags, :value => @list_title %>
+        <% end %>
+        <%= f.submit %>
+        <% end %>
+      </div>
+      <div class="button_container">
+        <%= link_to 'New Task (advanced)', new_task_path, :class => 'shiny_button' %>
+      </div>  
+    </div>  
+  </div>
+</div>
+<div class="paper_breathing_room"></div>
+
+<script type="text/javascript">
+  var pomEnds = null;
+  var currentTask = null;
+
+  $('#timer').countdown({until: pomEnds,  
+      onExpiry: tickPom, format: "MS"}); 
+   
+  $('#timer_start').click(function() { 
+      pomEnds = new Date(); 
+      pomEnds.setMinutes(pomEnds.getMinutes() + 25); 
+      $('#timer').countdown('change', {until: pomEnds}); 
+      currentTask = $('select.timer_drop_down option:selected').val();
+  }); 
+
+  $('#timer_cancel').click(function() {
+    $('#timer').countdown('destroy');
+    pomEnds = null;
+    $('#timer').countdown({until: pomEnds,  
+      onExpiry: tickPom, format: "MS"});
+  });
+   
+  function tickPom() { 
+      $.ajax({
+        type: "GET",
+        url: "/tasks/" +currentTask+ "/tick_pom"
+      }).done(function(){
+        location.reload();
+      });
+      alert('Pomodoro complete!'); 
+  } 
+</script>

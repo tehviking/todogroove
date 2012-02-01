@@ -1,0 +1,146 @@
+$medium_gray: #cfcece;
+$light_gray: #f7f6f6;
+
+.hero:before, .hero:after
+{
+	position: absolute;
+	width: 40%;
+	height: 10px;
+	content: ' ';
+	left: 12px;
+	bottom: 12px;
+	background: transparent;
+	-webkit-transform: skew(-5deg) rotate(-5deg);
+	-moz-transform: skew(-5deg) rotate(-5deg);
+	-ms-transform: skew(-5deg) rotate(-5deg);
+	-o-transform: skew(-5deg) rotate(-5deg);
+	transform: skew(-5deg) rotate(-5deg);
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+	-moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+	z-index: -1;
+}
+.hero:after
+{
+	left: auto;
+	right: 12px;
+	-webkit-transform: skew(5deg) rotate(5deg);
+	-moz-transform: skew(5deg) rotate(5deg);
+	-ms-transform: skew(5deg) rotate(5deg);
+	-o-transform: skew(5deg) rotate(5deg);
+	transform: skew(5deg) rotate(5deg);
+}
+
+#home_content {
+  width: 790px;
+  position: relative;
+  left:50%;
+//  top:50%;
+  margin: 0 0 0 -400px;
+}
+
+#hero {
+  @include border-radius;
+  @include background(image-url("home-hero.png"));
+  @include box-shadow(rgba(0,0,0,0.8) 0px 0px 5px);
+  height: 360px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.hero_copy_container {
+  margin: 10px;
+  width: 300px;
+  height: 340px;
+  float: right;
+  @include background(rgba(0,0,0,0.05));
+  @include border-radius;
+  
+  .hero_copy {
+    color: $nearly_black;
+    margin: 10px;
+    @include text-shadow;
+  }
+}
+#signup_button_container {
+  float: right;
+  padding-top: 20px;
+}
+#box_container {
+  float: left;
+  margin-bottom: 30px;
+  color: $nearly_black;
+  
+}
+.wide_box {
+  @include background-image(linear-gradient($light_gray 30%, $medium_gray 100%)); 
+  @include border-radius;
+  @include box-shadow(rgba(0,0,0,0.8) 0px 0px 5px);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  float: left;
+  width: 100%;
+  .inset_image {
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 10px;
+    float: left;
+  }
+  .pomodoro_copy {
+    @include background(rgba(0,0,0,0.05));
+    @include border-radius;
+    float: right;
+    margin: 10px;    
+    width: 615px;
+    h3.pom_headline {
+      margin: 5px;
+      margin-left: 10px;
+    }
+    p.pom_copy {
+      margin: 5px;
+      margin-left: 10px;
+    }
+    a.pom_link {
+      font-size: 12px;
+      text-decoration: none;
+      float: right;
+      margin: 5px;
+      margin-left: 10px;
+    }
+  }
+}
+.box {
+  @include border-radius;
+  @include background-image(linear-gradient($light_gray 30%, $medium_gray 100%)); 
+  @include box-shadow(rgba(0,0,0,0.8) 0px 0px 5px);
+  width: 250px;
+  height: 240px;
+  margin: 10px;
+  float: left;
+  .box_content {
+    margin: 10px;
+    margin-top: -10px;
+    margin-right: 5px;
+    .box_headline {
+      margin-top: 0px;
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+    .box_image {
+      clear: both;
+      float: left;
+      padding: 5px;
+    }
+    p.box_copy {
+      font-size: 13px;
+      margin: 10px;
+    }
+  }
+}
+.box_left {
+  @extend .box;
+  margin-left: 0px;
+}
+.box_right {
+  @extend .box;
+  margin-right: 0px;
+}
