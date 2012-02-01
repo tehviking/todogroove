@@ -16,3 +16,4 @@ config/production.yml
 config/database.yml
 config/deploy.rb
 .DS_Store
+config/initializers/secret_token.rb
