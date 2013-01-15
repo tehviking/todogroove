@@ -4,7 +4,12 @@
 </div>
 
 <div class="timer_container">
-  <div id="timer"></div>
+  <div id="timer">
+    <span class="countdown_section">
+      <span id="timer_amount" class="countdown_amount">
+      </span>
+    </span>
+  </div>
   <div class= "timer_options">
     <div class="drop_down_row">
       <%= select_tag "Activity", options_from_collection_for_select((@tasks || @all_tasks), 'id', 'name'), :class => "timer_drop_down chzn-select" %>
@@ -101,22 +106,32 @@
   var pomEnds = null;
   var currentTask = null;
 
-  $('#timer').countdown({until: pomEnds,  
-      onExpiry: tickPom, format: "MS"}); 
-   
-  $('#timer_start').click(function() { 
-      pomEnds = new Date(); 
-      pomEnds.setMinutes(pomEnds.getMinutes() + 25); 
-      $('#timer').countdown('change', {until: pomEnds}); 
-      currentTask = $('select.timer_drop_down option:selected').val();
-  }); 
+  var time = 7200;
+  var duration = moment.duration(time * 1000, 'milliseconds');
+  var interval = 1000;
 
-  $('#timer_cancel').click(function() {
-    $('#timer').countdown('destroy');
-    pomEnds = null;
-    $('#timer').countdown({until: pomEnds,  
-      onExpiry: tickPom, format: "MS"});
-  });
+  setInterval(function(){
+    duration = moment.duration(duration.asMilliseconds() - interval, 'milliseconds');
+    //show how many minutes and seconds are left
+    $('#timer_amount').text(moment(duration.asMilliseconds()).format('mm:ss'));
+  }, interval);
+
+  // $('#timer').countdown({until: pomEnds,  
+  //     onExpiry: tickPom, format: "MS"}); 
+   
+  // $('#timer_start').click(function() { 
+  //     pomEnds = new Date(); 
+  //     pomEnds.setMinutes(pomEnds.getMinutes() + 25); 
+  //     $('#timer').countdown('change', {until: pomEnds}); 
+  //     currentTask = $('select.timer_drop_down option:selected').val();
+  // }); 
+
+  // $('#timer_cancel').click(function() {
+  //   $('#timer').countdown('destroy');
+  //   pomEnds = null;
+  //   $('#timer').countdown({until: pomEnds,  
+  //     onExpiry: tickPom, format: "MS"});
+  // });
    
   function tickPom() { 
       $.ajax({

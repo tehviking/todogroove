@@ -1,14 +1,20 @@
 source :rubygems
 
-gem "rails", "3.0.9"
+gem "rails", "3.2.11"
 
 gem "bson_ext"
-gem "compass"
 gem "jquery-rails"
 gem "mongoid"
 gem 'bcrypt-ruby', :require => 'bcrypt'
-gem "acts_as_list_mongoid"
+gem 'mongoid_orderable'
 
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+  # gem "compass"
+  gem 'compass-rails'
+end
 
 group :development, :test do
   gem "guard"

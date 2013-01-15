@@ -10,7 +10,9 @@ require "rails/test_unit/railtie"
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+if defined?(Bundler)
+  Bundler.require *Rails.groups(:assets => %w(development test))
+end
 
 module Tdg
   class Application < Rails::Application
@@ -37,18 +39,21 @@ module Tdg
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
-    config.action_view.javascript_expansions[:defaults] = %w()
-    config.action_view.javascript_expansions[:todogroove_debug] = %w( jquery jquery-ui
-                                                                jquery_ujs application.js chosen.jquery
-                                                                modernizr.custom.80028 countdown)
-    config.action_view.javascript_expansions[:todogroove] = %w( jquery.min jquery-ui.min
-                                                                jquery_ujs application.js chosen.jquery.min
-                                                                modernizr.custom.80028 countdown)
+    # config.action_view.javascript_expansions[:defaults] = %w()
+    # config.action_view.javascript_expansions[:todogroove_debug] = %w( jquery jquery-ui
+    #                                                             jquery_ujs application.js chosen.jquery
+    #                                                             modernizr.custom.80028 countdown moment.min)
+    # config.action_view.javascript_expansions[:todogroove] = %w( jquery.min jquery-ui.min
+    #                                                             jquery_ujs application.js chosen.jquery.min
+    #                                                             modernizr.custom.80028 countdown moment.min)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    config.assets.enabled = true
+    config.assets.version = '1.0'
   end
 end

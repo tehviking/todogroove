@@ -1,0 +1,42 @@
+
+@import "compass";
+// To configure blueprint, edit the partials/base.sass file.
+@import "partials/base";
+
+// Import all the default blueprint modules so that we can access their mixins.
+@import "_blueprint";
+
+// Import the non-default scaffolding module.
+@import "blueprint/scaffolding";
+
+// To generate css equivalent to the blueprint css but with your
+// configuration applied, uncomment:
+// @include blueprint
+
+// If you are doing a lot of stylesheet concatenation, it is suggested
+// that you scope your blueprint styles, so that you can better control
+// what pages use blueprint when stylesheets are concatenated together.
+
+// Require the awesome power of Compass
+@import "compass/css3";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transform";
+
+//get your partials up in this piece
+@import "partials/block";
+@import "partials/body";
+@import "partials/task";
+@import "partials/header";
+@import "partials/footer";
+@import "partials/buttons";
+@import "partials/flash";
+@import "partials/paper";
+@import "partials/chosen";
+@import "partials/signin";
+@import "partials/home";
+@import "partials/countdown";
+
+// Style guide
+$nearly_black: #002134;
+
