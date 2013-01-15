@@ -1,4 +1,4 @@
-# PROD_CONFIG = YAML.load(File.open("#{::Rails.root.to_s}/config/production.yml"))
+PROD_CONFIG = YAML.load(File.open("#{::Rails.root.to_s}/config/production.yml"))
 
 Tdg::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
