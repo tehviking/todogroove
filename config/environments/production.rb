@@ -1,4 +1,7 @@
 PROD_CONFIG = YAML.load(File.open("#{::Rails.root.to_s}/config/production.yml"))
+SITE_NAME = "todogroove.com"
+MAIN_EMAIL = "todogroove@gmail.com"
+
 
 Tdg::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
