@@ -31,9 +31,9 @@ group :development, :test do
   gem "ruby-debug19", :require => false
   gem "simplecov"
   gem 'capybara'
-  gem 'cover_me', '>= 1.0.0.rc6'
+  # gem 'cover_me', '>= 1.0.0.rc6'
   gem 'cucumber'
-  gem 'cucumber-rails'
+  # gem 'cucumber-rails'
   gem 'database_cleaner'
 #  gem 'rspec-rails', '>= 2.0.0.beta.10'
 #  gem 'spork'
